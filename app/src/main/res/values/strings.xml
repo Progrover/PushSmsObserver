@@ -1,0 +1,84 @@
+<resources>
+
+    <string name="app_name" translatable="false">BitKor-1</string>
+
+    <string name="act_auth_logo" translatable="false">BitKor-1</string>
+    <string name="act_auth_title">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices</string>
+    <string name="act_auth_subtitle">Nam et turpis lectus. Quisque ullamcor\nipsum quis sapien aliquam</string>
+    <string name="act_auth_enter_api_key_title">Enter api key</string>
+    <string name="act_auth_enter_api_key_text">You can get it from bot, just write /key</string>
+    <string name="act_auth_hint_key">KEY</string>
+    <string name="act_auth_btn_paste">PASTE</string>
+    <string name="act_auth_btn_login">LOG IN</string>
+
+    <string name="act_main_logo" translatable="false">BitKor-SBP1</string>
+    <string name="act_main_btn_home">Home</string>
+    <string name="act_main_btn_menu">Menu</string>
+    <string name="act_main_btn_add_method">New Method</string>
+    <string name="act_main_need_requisites">To use the parser, add requisites</string>
+    <string name="act_main_press_button">To do this, press the button below</string>
+    <string name="act_main_arrow_down" translatable="false">Arrow</string>
+
+    <string name="main_parser_disabled">Parser disabled</string>
+    <string name="main_parser_enabled">Parser enabled</string>
+    <string name="main_press_the_button">Press the button to turn on</string>
+    <string name="main_requisites">Requisites</string>
+
+    <string name="di_method_edit">Edit method</string>
+    <string name="di_method_delete">Delete method</string>
+    <string name="di_method_cancel">CANCEL</string>
+
+    <string name="di_method_edit_title">Edit method</string>
+    <string name="di_method_edit_hint">Number</string>
+    <string name="di_method_edit_cancel">Cancel</string>
+    <string name="di_method_edit_save">Save</string>
+
+    <string name="di_parser_off_title">Are you sure you want to disable the parser?</string>
+    <string name="di_parser_off_message">If you delete it, you won\'t be able to restore it.</string>
+    <string name="di_parser_off_cancel">Cancel</string>
+    <string name="di_parser_off_turn_off">Turn off</string>
+
+    <string name="di_delete_method_title">Are you sure you want to remove the %s method?</string>
+    <string name="di_delete_method_message">If you delete it, you won\'t be able to restore it.</string>
+    <string name="di_delete_method_cancel">Cancel</string>
+    <string name="di_delete_method_delete">Delete</string>
+
+    <string name="menu_api_key_title">Api key</string>
+    <string name="menu_api_key_message">You can update your key, all details will be saved.</string>
+    <string name="menu_api_key_hint">Key</string>
+    <string name="menu_api_key_paste">PASTE</string>
+    <string name="menu_api_key_update">Update</string>
+
+    <string name="menu_telegram_title" translatable="false">Telegram</string>
+    <string name="menu_telegram_message">You can get help in telegram bot.</string>
+    <string name="menu_telegram_go">Go to telegram</string>
+
+    <string name="act_new_method_title">Add new method</string>
+    <string name="act_new_method_btn_create_method">Create method</string>
+    <string name="act_new_method_enter_details_card">Enter details card</string>
+    <string name="act_new_method_hint_card_number">Card number</string>
+
+
+    <string name="payment_method_card">CARD</string>
+    <string name="payment_method_phone">PHONE</string>
+    <string name="payment_method_sbp">SBP</string>
+
+
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="permission_required">Application needs permission to read SMS</string>
+    <string name="permission_manually">Application needs permission to read SMS, set it manually in settings</string>
+    <string name="push_notification_title">Push notifications read permission</string>
+    <string name="push_notificaton_text">For correct push notifications processsing, application needs permission. Please, grant it.</string>
+    <string name="push_notofocation_grant">Grant</string>
+    <string name="push_notification_cancel">Cancel</string>
+
+</resources>
