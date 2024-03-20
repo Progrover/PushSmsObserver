@@ -15,13 +15,18 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.ClearAll
+import androidx.compose.material.icons.filled.RemoveCircleOutline
+import androidx.compose.material.icons.outlined.Clear
 import androidx.compose.material.icons.outlined.RemoveCircleOutline
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Shapes
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -66,7 +71,7 @@ fun MainScreen(controller: AppController) {
                     )
                     if (state.requisites.isNotEmpty()) {
                         Icon(
-                            imageVector = Icons.Filled.ClearAll,
+                            imageVector = Icons.Filled.RemoveCircleOutline,
                             contentDescription = "Clear all",
                             modifier = Modifier
                                 .clickable(
@@ -78,21 +83,23 @@ fun MainScreen(controller: AppController) {
                                         }
                                     },
                                 )
+                                .padding(20.dp, 0.dp)
                         )
                     }
                 },
             )
+            Spacer(modifier = Modifier.height(4.dp))
             LazyColumn(
                 modifier = Modifier,
                 content = {
                     items(items = state.requisites) { requisite ->
-                        Spacer(modifier = Modifier.height(4.dp))
+                        Spacer(modifier = Modifier.height(7.dp))
                         Row(
                             verticalAlignment = Alignment.CenterVertically,
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .clip(BitKorShapes.extraLarge)
-                                .background(color = MaterialTheme.colorScheme.primaryContainer)
+                                .background(color = CustomColor().green_color_for_tint)
                                 .padding(horizontal = 24.dp, vertical = 12.dp),
                             content = {
                                 when (requisite.method) {
@@ -109,7 +116,7 @@ fun MainScreen(controller: AppController) {
                                             modifier = Modifier
                                                 .size(36.dp)
                                                 .padding(6.dp),
-                                            colorFilter = ColorFilter.tint(Color.White),
+                                            colorFilter = ColorFilter.tint(Color.Black),
                                             painter = painterResource(id = R.drawable.ic_method_card),
                                             contentDescription = null,
                                         )
@@ -118,7 +125,8 @@ fun MainScreen(controller: AppController) {
                                     PaymentMethod.PHONE -> {
                                         Image(
                                             modifier = Modifier.size(36.dp),
-                                            painter = painterResource(id = R.drawable.ic_method_sbp),
+                                            colorFilter = ColorFilter.tint(Color.Black),
+                                            painter = painterResource(id = R.drawable.baseline_local_phone_24),
                                             contentDescription = null,
                                         )
                                     }
@@ -131,9 +139,9 @@ fun MainScreen(controller: AppController) {
                                     style = BitkorTypography.titleMedium,
                                     text = requisite.number,
                                 )
-                                Spacer(modifier = Modifier.width(24.dp))
+                                Spacer(modifier = Modifier.width(30.dp))
                                 Icon(
-                                    imageVector = Icons.Outlined.RemoveCircleOutline,
+                                    imageVector = Icons.Outlined.Clear,
                                     contentDescription = "Remove",
                                     modifier = Modifier
                                         .clickable(
@@ -187,8 +195,13 @@ fun MainScreen(controller: AppController) {
                                     controller.hideClearRequisitesConfirm()
                                 }
                             },
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = CustomColor().green_color_for_buttons
+                            ),
+                            shape = Shapes().medium,
                             content = {
-                                Text(text = "Нет")
+                                Text(text = "Нет",
+                                    color = Color.Black)
                             },
                         )
                     },
@@ -199,11 +212,16 @@ fun MainScreen(controller: AppController) {
                                     controller.clearRequisites()
                                 }
                             },
-                            content = { Text(text = "Да") },
+                            shape = Shapes().medium,
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = CustomColor().green_color_for_buttons
+                            ),
+                            content = { Text(text = "Да",
+                                color = Color.Black)},
                         )
                     },
                     title = { Text(text = "Подтверждение") },
-                    text = { Text(text = "Вы действительно хотите удалить все реквизиты?") }
+                    text = { Text(text = "Хотите удалить все реквизиты?")}
                 )
             }
         },

@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.ContentPasteGo
+import androidx.compose.material.icons.filled.PostAdd
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -67,7 +68,7 @@ fun LoginScreen(controller: AppController) {
                         shape = BitKorShapes.extraLarge,
                         onValueChange = { value -> tokenTextFieldValue = value },
                         colors = TextFieldDefaults.colors(
-                            focusedContainerColor = CustomColor().green_color_for_buttons,
+                            focusedContainerColor = CustomColor().green_color_for_tint,
                         unfocusedContainerColor = CustomColor().green_color_for_tint,
                     disabledContainerColor = CustomColor().green_color_for_tint,
                             focusedIndicatorColor = Color.Transparent,
@@ -83,7 +84,7 @@ fun LoginScreen(controller: AppController) {
                         trailingIcon = {
                             if (tokenTextFieldValue.text.isEmpty()) {
                                 Icon(
-                                    imageVector = Icons.Filled.ContentPasteGo,
+                                    imageVector = Icons.Filled.PostAdd,
                                     contentDescription = null,
                                     modifier = Modifier.clickable(
                                         role = Role.Image,
@@ -131,7 +132,8 @@ fun LoginScreen(controller: AppController) {
                         content = { Text(text = "Продолжить", color = Color.Black) },
                         shape = BitKorShapes.medium,
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = CustomColor().green_color_for_buttons
+                            containerColor = CustomColor().green_color_for_buttons,
+                            disabledContainerColor = CustomColor().green_color_for_tint
                         )
                     )
                 },

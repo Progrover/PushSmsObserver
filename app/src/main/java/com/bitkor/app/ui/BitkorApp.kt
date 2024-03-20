@@ -16,14 +16,19 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.MaterialTheme.colors
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.Logout
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.AddCard
+import androidx.compose.material.icons.filled.AddCircleOutline
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Logout
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Person4
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -34,6 +39,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Shapes
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -68,6 +74,7 @@ import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import kotlinx.coroutines.launch
 import androidx.compose.ui.tooling.preview.Preview
+import com.bitkor.app.ui.theme.CustomColor
 
 @OptIn(ExperimentalPermissionsApi::class, ExperimentalMaterial3Api::class)
 @Composable
@@ -99,7 +106,7 @@ fun BitkorApp(controller: AppController) {
                                 modifier = Modifier.size(40.dp),
                                 imageVector = Icons.Filled.Person,
                                 contentDescription = null,
-                                tint = Color.Blue,
+                                tint = CustomColor().green_color_for_buttons,
                             )
                         },
                         title = {
@@ -107,16 +114,16 @@ fun BitkorApp(controller: AppController) {
                                 modifier = Modifier,
                                 content = {
                                     Text(
-                                        style = MaterialTheme.typography.labelLarge,
+                                        style = MaterialTheme.typography.titleLarge,
                                         text = "Профиль",
-                                        color = Color.Blue
+                                        color = Color.Black
                                     )
                                     Text(
-                                        style = MaterialTheme.typography.titleMedium,
+                                        style = MaterialTheme.typography.titleSmall,
                                         maxLines = 1,
                                         overflow = TextOverflow.Ellipsis,
                                         text = state.token ?: "",
-                                       color = Color.Blue
+                                       color = Color.Black
                                     )
                                 }
                             )
@@ -124,7 +131,8 @@ fun BitkorApp(controller: AppController) {
                         actions = {
                             IconButton(onClick = { coroutineScope.launch { controller.showLogoutConfirm() } }) {
                                 Icon(
-                                    imageVector = Icons.Filled.Logout,
+                                    tint = CustomColor().green_color_for_buttons,
+                                    imageVector = Icons.AutoMirrored.Filled.Logout,
                                     contentDescription = null,
                                 )
                             }
@@ -155,12 +163,24 @@ fun BitkorApp(controller: AppController) {
                         AlertDialog(
                             onDismissRequest = { newRequisiteDialogVisible = false },
                             dismissButton = {
-                                Button(onClick = { newRequisiteDialogVisible = false }) {
-                                    Text(text = "Закрыть")
+                                Button(onClick = { newRequisiteDialogVisible = false },
+                                    shape = Shapes().large,
+                                    colors = ButtonDefaults.buttonColors(
+                                        containerColor = CustomColor().green_color_for_buttons
+                                    )) {
+                                    Text(text = "Закрыть",
+                                        color = Color.Black)
+
+
                                 }
                             },
                             confirmButton = {
                                 Button(
+                                    colors = ButtonDefaults.buttonColors(
+                                        containerColor = CustomColor().green_color_for_buttons,
+                                        disabledContainerColor = CustomColor().green_color_for_tint
+
+                                    ),
                                     onClick = {
                                         val requisite = PaymentRequisites(
                                             method = requisitePaymentMethodValue,
@@ -171,6 +191,7 @@ fun BitkorApp(controller: AppController) {
                                         }
                                         newRequisiteDialogVisible = false
                                     },
+                                    shape = Shapes().large,
                                     enabled = when (requisitePaymentMethodValue) {
                                         PaymentMethod.CARD -> {
                                             val regex = "^\\d{15,20}$".toRegex()
@@ -187,7 +208,8 @@ fun BitkorApp(controller: AppController) {
                                         }
                                     },
                                     content = {
-                                        Text(text = "Добавить")
+                                        Text(text = "Добавить",
+                                            color = Color.Black)
                                     },
                                 )
                             },
@@ -197,9 +219,10 @@ fun BitkorApp(controller: AppController) {
                                     modifier = Modifier,
                                     content = {
                                         Text(
-                                            modifier = Modifier.padding(start = 16.dp),
+                                            modifier = Modifier.padding(0.dp, 5.dp),
                                             style = MaterialTheme.typography.labelLarge,
                                             text = "Выберите тип",
+                                            color = Color.Black
                                         )
                                         ExposedDropdownMenuBox(
                                             expanded = requisitePaymentMethodExpanded,
@@ -223,6 +246,8 @@ fun BitkorApp(controller: AppController) {
                                                     maxLines = 1,
                                                     shape = MaterialTheme.shapes.extraLarge,
                                                     colors = ExposedDropdownMenuDefaults.textFieldColors(
+                                                        focusedContainerColor = CustomColor().green_color_for_tint,
+                                                        unfocusedContainerColor = CustomColor().green_color_for_tint,
                                                         focusedIndicatorColor = Color.Transparent,
                                                         disabledIndicatorColor = Color.Transparent,
                                                         errorIndicatorColor = Color.Transparent,
@@ -275,10 +300,11 @@ fun BitkorApp(controller: AppController) {
                                                 )
                                             },
                                         )
-                                        Spacer(modifier = Modifier.height(12.dp))
+                                        Spacer(modifier = Modifier.height(20.dp))
                                         Text(
-                                            modifier = Modifier.padding(start = 16.dp),
+                                            modifier = Modifier.padding(0.dp, 5.dp),
                                             style = MaterialTheme.typography.labelLarge,
+                                            color = Color.Black,
                                             text = when (requisitePaymentMethodValue) {
                                                 PaymentMethod.SIM -> "Введите номер телефона"
                                                 PaymentMethod.CARD -> "Введите номер карты"
@@ -303,6 +329,8 @@ fun BitkorApp(controller: AppController) {
                                                 }
                                             },
                                             colors = TextFieldDefaults.colors(
+                                                focusedContainerColor = CustomColor().green_color_for_tint,
+                                                unfocusedContainerColor = CustomColor().green_color_for_tint,
                                                 unfocusedIndicatorColor = Color.Transparent,
                                                 errorIndicatorColor = Color.Transparent,
                                                 disabledIndicatorColor = Color.Transparent,
@@ -328,8 +356,13 @@ fun BitkorApp(controller: AppController) {
                                             controller.hideLogoutConfirm()
                                         }
                                     },
+                                    shape = Shapes().large,
+                                    colors = ButtonDefaults.buttonColors(
+                                        containerColor = CustomColor().green_color_for_buttons
+                                    ),
                                     content = {
-                                        Text(text = "Нет")
+                                        Text(text = "Нет",
+                                            color = Color.Black)
                                     },
                                 )
                             },
@@ -340,11 +373,16 @@ fun BitkorApp(controller: AppController) {
                                             controller.logout()
                                         }
                                     },
-                                    content = { Text(text = "Да") },
+                                    colors = ButtonDefaults.buttonColors(
+                                        containerColor = CustomColor().green_color_for_buttons
+                                    ),
+                                    shape = Shapes().large,
+                                    content = { Text(text = "Да",
+                                        color = Color.Black) },
                                 )
                             },
                             title = { Text(text = "Подтверждение") },
-                            text = { Text(text = "Вы действительно хотите выйти из аккаунта?") }
+                            text = { Text(text = "Хотите выйти из аккаунта?") }
                         )
                     }
                 })
@@ -353,10 +391,11 @@ fun BitkorApp(controller: AppController) {
                 if (null != state.token) {
                     FloatingActionButton(
                         shape = CircleShape,
+                        containerColor = CustomColor().green_color_for_buttons,
                         onClick = { newRequisiteDialogVisible = true },
                         content = {
                             Icon(
-                                imageVector = Icons.Filled.AddCard,
+                                imageVector = Icons.Filled.Add,
                                 contentDescription = null,
                             )
                         },
@@ -364,5 +403,13 @@ fun BitkorApp(controller: AppController) {
                 }
             },
         )
+    }
+}
+
+@Preview
+@Composable
+fun BitkorAppPreview() {
+    BitkorTheme {
+        BitkorApp(controller = AppController())
     }
 }

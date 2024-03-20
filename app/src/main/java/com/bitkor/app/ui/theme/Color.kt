@@ -59,4 +59,5 @@ class CustomColor() {
     val md_theme_dark_surfaceTint = Color(0xFF94EEA3)
     val green_color_for_buttons = Color(0xFF5DF376)
     val green_color_for_tint = Color(0xFFC6F7CE)
+    val warningColor = Color(0xFFF31C1C)
 }
