@@ -111,6 +111,9 @@ android {
         // Integration with observables
         implementation("androidx.compose.runtime:runtime-livedata:1.6.3")
         implementation("androidx.compose.runtime:runtime-rxjava2:1.6.3")
+        implementation ("com.github.mukeshsolanki:Android-Shared-Preferences-TinyDB-:1.1.10")
+        implementation ("com.google.code.gson:gson:2.8.8")
+
 
     }
 

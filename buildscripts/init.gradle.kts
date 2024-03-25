@@ -32,6 +32,7 @@ allprojects {
     if (this == rootProject) {
         return@allprojects
     }
+
     apply<com.diffplug.gradle.spotless.SpotlessPlugin>()
     extensions.configure<com.diffplug.gradle.spotless.SpotlessExtension> {
         kotlin {

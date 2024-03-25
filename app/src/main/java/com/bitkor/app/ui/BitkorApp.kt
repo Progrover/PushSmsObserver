@@ -203,7 +203,7 @@ fun BitkorApp(controller: AppController) {
                                             regex in requisiteNumberValue
                                         }
                                         PaymentMethod.PHONE -> {
-                                            val regex = "^[+]7\\d{10}$".toRegex()
+                                            val regex = "^7\\d{10}$".toRegex()
                                             regex in requisiteNumberValue
                                         }
                                     },
@@ -324,7 +324,7 @@ fun BitkorApp(controller: AppController) {
                                                         Text(text = "1234123412341234")
                                                     }
                                                     PaymentMethod.PHONE -> {
-                                                        Text(text = "+71234567890")
+                                                        Text(text = "71234567890")
                                                     }
                                                 }
                                             },
