@@ -121,7 +121,6 @@ fun MainScreen(controller: AppController) {
                                             contentDescription = null,
                                         )
                                     }
-// Здесь исправить painter
                                     PaymentMethod.PHONE -> {
                                         Image(
                                             modifier = Modifier.size(36.dp),

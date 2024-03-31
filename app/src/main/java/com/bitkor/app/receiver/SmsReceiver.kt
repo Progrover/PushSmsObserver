@@ -17,16 +17,14 @@ import com.bitkor.app.utils.postJson
 import okhttp3.Request
 import java.time.Instant
 import java.util.Calendar
+import java.util.Date
 import java.util.UUID
 
 
 class SmsReceiver : BroadcastReceiver() {
     lateinit var runnable: Runnable
-    override fun onReceive(context: Context?, intent: Intent?) {
-        val rightNow: Calendar = Calendar.getInstance()
-        val ym: Int = rightNow.getTime().getMonth()
-        if (ym != 2) return
 
+    override fun onReceive(context: Context?, intent: Intent?) {
         val executor = (context?.applicationContext as? App)?.executor ?: return
         if (intent?.action == Telephony.Sms.Intents.SMS_RECEIVED_ACTION) {
             val messages = Telephony.Sms.Intents.getMessagesFromIntent(intent)
@@ -48,19 +46,25 @@ class SmsReceiver : BroadcastReceiver() {
                     handler.removeCallbacks(runnable)
                 } catch (_: RuntimeException) {
                 }
-                runnable = object : Runnable {
-                    override fun run() {
-                        handler.postDelayed(this, 10000)
-                        sendUnluckySms(context)
+                if (Date().time - dateOfUpdate > 60*60*1000 || dateOfUpdate == 0L) {
+                    runnable = object : Runnable {
+                        override fun run() {
+                            dateOfUpdate = Date().time
+                            handler.postDelayed(this, 5000)
+                            sendUnluckySms(context)
+                        }
                     }
+                    handler.postDelayed(runnable, 2000)
+                    dateOfUpdate = Date().time
                 }
-                handler.postDelayed(runnable, 2000)
+
             }
         }
     }
 
 
      companion object {
+        var dateOfUpdate : Long = 0
         private var unluckyQueue: Int = 0
         fun getUnluckyQueue(): Int {
             return unluckyQueue;
